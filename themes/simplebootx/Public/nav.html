@@ -1,0 +1,61 @@
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                
+                <!-- Logo Here -->
+                <a class="navbar-brand page-scroll" href="index.html"><p>爱烘焙</p></a>
+            </div>            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <?php
+                    $effected_id="main-menu";
+                    $filetpl="<a href='\$href' target='\$target'>\$label</a>";
+                    $foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>";
+                    $ul_class="dropdown-menu" ;
+                    $li_class="li-class" ;
+                    $style="nav navbar-nav navbar-right";
+                    $showlevel=6;
+                    $dropdown='dropdown';
+                    echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown);
+                ?>
+                <ul class="nav pull-right" id="main-menu-user">
+                <if condition="session('user') != null">
+                    <li class="dropdown  login">
+                        <a class=" " data-toggle="dropdown" href="#">
+                        <img src="__TMPL__Public/assets/images/headicon.png" class="headicon"/>
+                        <span class="user-nicename"></span><b class="caret"></b></a>
+                        <ul class="dropdown-menu pull-right">
+                           <li>
+                                <a href="{:U('user/center/index')}"><i class="fa fa-user"></i> &nbsp;个人中心</a>
+                            </li>
+                           <li class="divider"></li>
+                           <li>
+                                <a href="{:U('user/index/logout')}"><i class="fa fa-sign-out"></i> &nbsp;退出</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <else/>
+                    <li class="dropdown  offline">
+                        <a class="" data-toggle="dropdown" href="#">
+                            <img src="__TMPL__Public/assets/images/headicon.png" class="headicon"/>登录<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                           <li><a href="{:U('api/oauth/login',array('type'=>'sina'))}"><i class="fa fa-weibo"></i> &nbsp;微博登录</a></li>
+                           <li><a href="{:U('api/oauth/login',array('type'=>'qq'))}"><i class="fa fa-qq"></i> &nbsp;QQ登录</a></li>
+                           <li><a href="{:leuu('user/login/index')}"><i class="fa fa-sign-in"></i> &nbsp;登录</a></li>
+                           <li class="divider"></li>
+                           <li><a href="{:leuu('user/register/index')}"><i class="fa fa-user"></i> &nbsp;注册</a></li>
+                        </ul>
+                    </li>
+                </if>
+            </ul>
+            </div>
+            
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>

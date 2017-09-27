@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <tc_include file="Public:head" />
+  </head>
+
+  <body id="page-top" class="aboutus-page">
+    
+    <!-- Nav Section -->
+    
+   <tc_include file="Public:nav" />
+        
+    
+    <!-- Page Title Header -->
+    
+    <tc_include file="Public:header" />
+    
+    <!-- About page Section -->
+    
+    <section id="aboutpage" class="aboutpage about"><!-- Section id-->
+    <php>
+        $aboutOne=sp_sql_posts("cid:8;");
+        $img = json_decode($aboutOne[0]['smeta']);
+    </php>
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-6 col-sm-12 left-side">
+                	<div class="section-title inside-page">
+                    	<h4>{$aboutOne.0.post_title}</h4>
+                        <h2>{$aboutOne.0.post_excerpt}</h2>
+                    </div>
+                    <div class="about-page-content">
+                    	<p>{$aboutOne.0.post_content}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 right-side">
+                	<div class="row about-img">
+                    	<div class="col-sm-6 col-xs-6">
+                        	<figure><img src="{$img->photo[0]->url}" class="img-responsive" alt="Picture"></figure>
+                        </div>
+                        <div class="col-sm-6 col-xs-6">
+                        	<figure><img src="{$img->photo[1]->url}" class="img-responsive" alt="Picture"></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Happy Customers Section -->
+    
+    <section id="happy" class="happy"><!-- Section id-->
+    <php>
+        $aboutTwo=sp_sql_posts("cid:9;");
+    </php>
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="best-dish">
+                    	<div class="section-title inside-page">
+                            <h4>{$aboutTwo.0.post_title}</h4>
+                            <h2>{$aboutTwo.0.post_excerpt}</h2>
+                        </div>
+                        <p class="fs-16">{$aboutTwo.0.post_content}</p>               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+	<!-- Our Team Section -->
+    
+    <section id="ourteam" class="ourteam"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="section-title">
+                    	<h2 class="fw-600">我们的团队</h2>
+                        <img src="__TMPL__Public/assets/ass/images/sep-1.png" alt="Underline" />
+                    </div>
+                </div>
+            </div>
+             <php>
+                $aboutThree=sp_sql_posts("cid:10;limit:3;");
+                $img = json_decode($aboutThree[0]['smeta']);
+            </php>
+            <div class="row">
+                <foreach name="aboutThree" item="vo" key='k'>
+                <php>
+                    $img = json_decode($vo['smeta']);
+                </php>
+            		<div class="col-md-4 col-sm-4">
+                    	<div class="team-block">
+                        	<p class="name fs-18">{$vo.post_title}</p>
+                            <p class="pos fs-12">{$vo.post_excerpt}</p>
+                            <img src="{$img->photo[0]->url}" class="img-circle img-responsive" alt="avtar" />
+                            <p class="details">{$vo.post_content}</p>
+                            <ul class="list-inline social-icon">
+                            	<li><a href="#" ><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" ><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </foreach>
+                </div>							
+            </div>
+    </section>
+
+    <!-- Footer Section -->
+    <tc_include file="Public:footer" />
+
+    
+    <tc_include file="Public:scripts" />
+    
+  </body>
+</html>
+

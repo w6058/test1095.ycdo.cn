@@ -1,0 +1,17 @@
+<php>
+    $header=sp_sql_posts("cid:7;field:post_title,post_excerpt,object_id,smeta,term_id;order:listorder asc;limit:4;");
+    $img = json_decode($header[0]['smeta']);
+</php>
+<header class="inner-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-mg-12">
+                <img src="http://localhost/data/upload/{$img->photo[0]->url}" class="img-responsive" alt="Page Title Bg">  <!-- Page Title Image -->
+                <div class="page-title">
+                    <p>{$header.0.post_content}</p>
+                    <h1>{$header.0.post_title}</h1>
+                </div>        
+            </div>
+        </div>
+    </div>
+</header>

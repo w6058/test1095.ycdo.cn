@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <tc_include file="Public:head" /> 
+  </head>
+
+  <body id="page-top" class="contact-us-page">
+    
+    <!-- Nav Section -->
+    
+   <tc_include file="Public:nav" />
+        
+    
+    <!-- Page Title Header -->
+    
+	 <tc_include file="Public:header" />
+    
+    
+    <!-- Location Section -->
+    
+    <section id="location" class="location"><!-- Section id-->
+        <div class="container-fluid">
+            <div class="row">
+                	<!---<div class="map">
+           				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193571.43828902414!2d-74.11808644749037!3d40.70582536315509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1473165198965" style="border:0" allowfullscreen></iframe>
+                    </div>--->
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact with form Section -->
+    
+    <section id="contact" class="contact contactus"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-12 bg-black">
+                	<div class="row contact-info">
+                      <php>
+                          $contactOne=sp_sql_posts("cid:24;");
+                      </php>
+                    	<div class="col-sm-4">
+                            <img src="__TMPL__Public/assets/ass/images/phone.png" class="img-responsive" alt="Phone" />
+                            <p class="fs-18 text-uppercase gold">电 话 号 码</p>
+                            <p class="white">{$contactOne.2.post_content}</p>
+                        </div> 
+                        <div class="col-sm-4">
+                            <img src="__TMPL__Public/assets/ass/images/address.png" class="img-responsive" alt="Phone" />
+                            <p class="fs-18 text-uppercase gold">地 址</p>
+                            <p class="white">{$contactOne.1.post_content}</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <img src="__TMPL__Public/assets/ass/images/mail.png" class="img-responsive" alt="Phone" />
+                            <p class="fs-18 text-uppercase gold">邮箱</p>
+                            <p class="white">{$contactOne.0.post_content}</p>
+                        </div>     
+                    </div>
+                    <div class="open-time-info">
+                    	<p class="white fw-600 fs-16">请填写您的资料，联系到我们！ </p>
+                    </div>
+                    <div class="row contactus-form">
+                        <div class="col-lg-8 col-md-push-2 col-sm-push-1 col-sm-10 col-md-8">
+                             <div class="contact-form"><!-- contact form -->
+                                <form class="" action="index.php?g=&m=SendEmail&a=index" id="contactusform" name="contact" method="post" >
+                                  <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="InputName" id="InputName" placeholder="您的姓名" required >
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <input type="email" class="form-control" name="InputEmail" id="InputEmail" placeholder="您的邮箱 " required >
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <input type="tel" class="form-control" name="InputPhone" id="InputPhone" placeholder="电话号码" required >
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="InputSubject" id="InputSubject" placeholder="最爱的食物" required >
+                                  </div>
+                                  <div class="form-group col-md-12">
+                                    <textarea class="form-control" name="InputMessage" id="InputMessage" rows="4" placeholder="内容" required  ></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-white">发送</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <tc_include file="Public:footer" />
+
+    
+    <tc_include file="Public:scripts" />
+
+  </body>
+</html>
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <tc_include file="Public:head" />
+  </head>
+
+  <body id="page-top" class="gallery-page">
+    
+    <!-- Nav Section -->
+    
+    <tc_include file="Public:nav" />
+        
+    
+    <!-- Page Title Header -->
+    
+	<tc_include file="Public:header" />
+    
+    <!-- Gallery page Section -->
+    
+    <section id="gallery" class="gallery"><!-- Section id-->
+        <div class="container">
+            <div class="row no-gutter popup-gallery">
+            <php>
+                $galleryOne=sp_sql_posts("cid:23;");
+            </php>
+            <foreach name="galleryOne" item="vo" key="k"> 
+                <php>
+                    $img = json_decode($vo['smeta']);
+                </php>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="{$img->photo[0]->url}" class="gallery-box" rel="alternate"><!-- full image -->
+                        <img src="{$img->photo[0]->url}" class="img-responsive" alt=""><!-- thumb image -->
+                        
+                        <div class="gallery-box-caption"><!-- caption here -->
+                            <div class="gallery-box-caption-content">
+                                <div class="project-name fs-18">
+                                    {$vo.post_content}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </foreach>
+                
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Footer Section -->
+    <tc_include file="Public:footer" />
+
+    
+    <tc_include file="Public:scripts" />
+    
+  </body>
+</html>

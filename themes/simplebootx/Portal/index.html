@@ -1,0 +1,286 @@
+<t!DOCTYPE html>
+<html lang="en">
+  <head>
+    <tc_include file="Public:head" />
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+    
+    <tc_include file="Public:nav" />
+    
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide carousel-fade header">
+    
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <php>
+            $home_slides=sp_getslide("portal_index");
+
+            $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+
+            </php>
+             <foreach name="home_slides" item="vo" key="k">
+                <if condition="$k eq 0 ">
+                    <div class="item active">
+                    <else /> 
+                     <div class="item">
+                </if>
+                    <!-- Set the first background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url({:sp_get_asset_upload_path($vo['slide_pic'])});"></div>
+                    <div class="carousel-caption">
+                        <img src="__TMPL__Public/assets/ass/images/slide-wave.png" class="img-responsive" alt="Slide">
+                        <h2>Delicious Foods</h2> 
+                        <h3>{$vo.slide_name}</h3> 
+                        <a href="reservation.html" class="btn btn-white">Make a Reservation</a>
+                    </div>
+                </div>
+            </foreach>
+            
+            
+        </div>
+        
+    </header>   
+    
+    
+    <!-- About Section -->
+    
+    <section id="about" class="about"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 left-side">
+                    <div class="section-title">
+                        <h1>关于我们</h1>
+                        <img src="__TMPL__Public/assets/ass/images/sep-1.png" alt="Underline" />
+                    </div>
+                    <php>
+                        $chefCook=sp_sql_posts("cid:2;");
+                        $img = json_decode($chefCook[0]['smeta']);
+                    </php>
+                    <div class="about-content">
+                        <p class="text-uppercase fw-700">{$chefCook.0.post_title}</p>
+                        <p>{$chefCook.0.post_content}</p>
+                    </div>
+                    <div class="about-chef">
+                        <h3>Chef Cook</h3>
+                        <img src="{$img->photo[0]->url}" alt="">
+                        <p>"Unique creations for unique<br>occasions."</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 right-side">
+                <php>
+                $home_slides=sp_getslide("portal_about");
+
+                $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+                </php>
+                    <div class="row about-img">
+                        <foreach name="home_slides" item="vo" key="k">
+                            <div class="col-sm-6 col-xs-12">
+                                <figure><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" class="img-responsive" alt="Picture"></figure>
+                            </div>
+                        </foreach>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Our Menu Section -->
+    
+    <section id="ourmenu" class="ourmenu"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+            <php>
+                $lastnews=sp_sql_posts("cid:1;order:listorder asc;limit:3;");
+            </php>
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h1>我们的菜单</h1>
+                        <img src="__TMPL__Public/assets/ass/images/sep-1.png" alt="Underline" />
+                    </div>
+                </div>
+                <foreach name="lastnews" item="vo">
+                    <div class="col-md-4 col-sm-4 col-xs-12">               
+                        <div class="hover ehover">
+                           {$vo.post_content}
+                            <div class="overlay">
+                                <a href="ourmenu" class="info btn btn-gold">查看更多 </a>
+                            </div>  
+                            <h3>{$vo.post_title}</h3>          
+                        </div>
+                    </div>
+                </foreach>
+                
+                
+                <div class="col-md-12 col-sm-12 col-xs-12 call-to-btn">
+                    <a href="ourmenu" class="btn btn-white">更多</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Meal of the Day Section -->
+    
+    <section id="mealoftheday" class="mealoftheday"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h1>一天的膳食</h1>
+                        <img src="__TMPL__Public/assets/ass/images/sep-1.png" alt="Underline" />
+                    </div>
+                </div>
+                <php>
+                    $dayFood=sp_sql_posts("cid:3;");
+                    $img = json_decode($dayFood[0]['smeta']);
+                </php>
+                <div class="col-md-7 col-sm-6">
+                    <div class="meal-img">
+                        <img src="{$img->photo[1]->url}" class="img-responsive" alt="meal of the day" />
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <div class="meal-details">
+                        <h3>{$dayFood.0.post_title}</h3>
+                        <p>{$dayFood.0.post_content}</p>
+                        <div class="row chaf-qut">
+                            <div class="col-sm-3 col-xs-5">
+                                <img src="{$img->photo[0]->url}" class="img-circle img-responsive" alt="avtar" />
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <p>{$dayFood.0.post_excerpt}</p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>                                
+                
+            </div>
+        </div>
+    </section> 
+       
+
+    <!-- Book a Table Section -->
+    
+    <section id="bookatable" class="bookatable"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <php>
+                    $yuDing=sp_sql_posts("cid:6;");
+                </php>
+                    <div class="best-dish">
+                        <h1>{$yuDing.0.post_title}</h1>
+                        <p class="big-text">{$yuDing.0.post_excerpt}</p>
+                        <p>{$yuDing.0.post_content} </p>
+                        <div class="call-to-action">
+                            <a href="reservation.html" class="btn btn-gold">Book a Table</a>
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="events" class="events"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h1>即将举行的活动</h1>
+                        <img src="__TMPL__Public/assets/ass/images/sep-1.png" alt="Underline" />
+                    </div>
+                </div>                
+            </div>
+            <php>
+                $events=sp_sql_posts("cid:5;limit:3;");
+            </php>
+            <div class="row event-block">
+            <foreach name="events" item="vo" key="k"> 
+                <php>
+                    $img = json_decode($vo['smeta']);
+                </php>
+                <if condition="$k eq 0 ">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="event-artical">
+                            <img src="{$img->photo[0]->url}" class="img-responsive" alt="Event" />
+                            <p class="event-date">{$vo.post_excerpt}</p>
+                            <h4 class="event-name fs-20">{$vo.post_title}</h4>
+                            <p class="event-details">{$vo.post_content}</p>
+                        </div>
+                    </div>
+                    <elseif condition="$k eq 1"/>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="event-artical">                     
+                                <p class="event-date">{$vo.post_excerpt}</p>
+                                <h4 class="event-name fs-20">{$vo.post_title}</h4>
+                                <p class="event-details">{$vo.post_content}</p>
+                                <img src="{$img->photo[0]->url}" class="img-responsive" alt="Event" />
+                            </div>
+                        </div>
+                    <else /> 
+                        <div class="col-md-4 col-sm-4">
+                            <div class="event-artical">
+                                <img src="{$img->photo[0]->url}" class="img-responsive" alt="Event" />
+                                <p class="event-date">{$vo.post_excerpt}</p>
+                                <h4 class="event-name fs-20">{$vo.post_title}</h4>
+                                <p class="event-details">{$vo.post_content}</p>
+                            </div>
+                        </div>
+                </if>
+            </foreach>
+            </div>
+            
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    
+    <section id="contactus" class="contactus"><!-- Section id-->
+        <div class="container">
+            <div class="row contect-out-bg">
+                <!---<div class="col-md-6 col-sm-6">
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387145.8662688941!2d-74.2581880279189!3d40.70531105474914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1476860298090" height="450" ></iframe>
+                    </div>
+                </div>--->
+                <div class="col-md-6 col-sm-6">
+                    <div class="section-title">
+                        <h1>联系我们</h1>
+                        <img src="__TMPL__Public/assets/ass/images/sep-2.png" alt="sep">
+                    </div>
+                    
+                    <div class="contact-form row"><!-- contact form -->
+                        <form class="" action="send_email.php" id="contact" name="contact" method="post" >
+                          <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="InputName" id="InputName" placeholder="您的姓名" required >
+                          </div>
+                          <div class="form-group col-md-6">
+                            <input type="email" class="form-control" name="InputEmail" id="InputEmail" placeholder="您的邮箱" required >
+                          </div>
+                          <div class="form-group col-md-12">
+                            <textarea class="form-control" name="InputMessage" id="InputMessage" rows="4" placeholder="内容" required  ></textarea>
+                          </div>
+                          
+                          <button name="submit" type="submit" class="btn btn-white">发信息</button>
+                        </form>
+                    </div>
+                    
+                </div>                
+            </div>            
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <tc_include file="Public:footer" />
+
+    
+    <tc_include file="Public:scripts" />
+    
+  </body>
+</html>
+

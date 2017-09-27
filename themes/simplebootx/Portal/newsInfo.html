@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <tc_include file="Public:head" />
+  </head>
+
+  <body id="page-top" class="services-page">
+    
+    <!-- Nav Section -->
+    <tc_include file="Public:nav" />
+    
+    <!-- Page Title Header -->
+    
+	<tc_include file="Public:header" />
+    
+    
+    <!-- Our Services Section -->
+    <!-- <php>
+        $newsOne=sp_sql_posts("cid:25;");
+    </php>  -->   
+    <php>
+        $img = json_decode($new['smeta']);
+    </php>          
+    <section id="services1" class="services"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 text-side">
+                        <div class="section-title inside-page">
+                            <h4>{$new.post_title}</h4>
+                            <h2>{$new.post_excerpt}</h2>
+                        </div>
+                        <div class="ser-content">
+                            <p class="fs-16">{$new.post_content}</p>
+                        </div>              
+                </div>
+                <div class="col-md-6 col-sm-6 img-side">
+                    <div class="row about-img">
+                        <div class="col-sm-12 col-xs-12">
+                            <figure><img src="{$img->photo[0]->url}" class="img-responsive" alt="Picture"></figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {:hook('comment',array(
+        'post_id'=>$new_title,
+        'post_table'=>'posts',
+        'post_title'=>$new_title
+    ))}
+    <!-- Footer Section -->
+    
+    <tc_include file="Public:footer" />
+
+    
+    <tc_include file="Public:scripts" />
+
+    
+  </body>
+</html>
+

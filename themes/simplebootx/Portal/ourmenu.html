@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <tc_include file="Public:head" />
+  </head>
+
+  <body id="page-top" class="ourmenu-page">
+    
+    <!-- Nav Section -->
+    
+    <tc_include file="Public:nav" />
+        
+    
+    <!-- Page Title Header -->
+    
+	<tc_include file="Public:header" />
+    
+    
+    <!-- Hot Deal Section -->
+    
+    <section id="hotdeal" class="hotdeal"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+                <php>
+                    $menuOne=sp_sql_posts("cid:11;");
+                    $img = json_decode($menuOne[0]['smeta']);
+                </php>
+            	<div class="col-md-6 col-sm-12 left-side about-img">
+                     <figure><img src="{$img->photo[0]->url}" class="img-responsive" alt="Picture"></figure>
+                </div>
+                <div class="col-md-1 col-sm-12 col-md-pull-1 center-side">
+                	<div class="best-price">
+                    	<p class="tex">{$menuOne.0.post_title}</p>
+                        <p class="amount">{$menuOne.0.post_excerpt}</p>
+                    </div>
+                </div>
+            	<div class="col-md-5 col-sm-12 right-side">
+                	<php>
+                        $menuTwo=sp_sql_posts("cid:12;limit:4;");
+                    </php>
+                    <foreach name="menuTwo" item="vo" key="k">
+                        <div class="hot-deal-item">
+                        	<p class="item-title">{$vo.post_title}</p>
+                            <p>{$vo.post_excerpt}</p>
+                        </div>
+                    </foreach>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Menu List Section -->
+
+    <section id="menulist1" class="menulist"><!-- Section id-->
+        <php>
+            $menuThree=sp_sql_posts("cid:13;");
+            $img = json_decode($menuThree[0]['smeta']);
+        </php>
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-4 col-sm-12 item-img">
+                	<div class="row">
+                    	<div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[0]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                        <div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[1]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                    </div>
+                </div>
+            	<div class="col-md-8 col-sm-12 item-list">
+                	<div class="row">
+                        <div class=" col-sm-12 section-title inside-page">
+                            <h4>{$menuThree.0.post_title}</h4>
+                            <h2>{$menuThree.0.post_content}</h2>
+                        </div>
+                        <div class="col-md-6">
+                        <php>
+                            $menuFour=sp_sql_posts("cid:14;limit:8;");
+                            $img = json_decode($menuFour[0]['smeta']);
+                        </php>
+                        <foreach name="menuFour" item="vo" key='k'>
+                            <if condition="$k lt 4">
+                                <div class="menu-item">
+                                    <div class="item-name">
+                                        <h4>{$vo.post_title}</h4>
+                                    </div>
+                                    <div class="item-details row">
+                                        <div class="col-sm-9">
+                                            <p>{$vo.post_content}</p>
+                                        </div>
+                                    </div>                                            
+                                </div>
+                            </if>
+                        </foreach>
+                            
+                        </div>
+                        <div class="col-md-6">
+                        <foreach name="menuFour" item="vo" key='k'>
+                            <if condition="$k gt 3">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>{$vo.post_title}</h4>
+                                </div>
+                                <div class="item-details row">
+                                    <div class="col-sm-9">
+                                        <p>{$vo.post_content}</p>
+                                    </div>
+                                </div>                                            
+                            </div>
+                            </if>
+                        </foreach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- Menu List Section -->
+    
+    <section id="menulist2" class="menulist"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+            	<php>
+                    $menuFive=sp_sql_posts("cid:15;");
+                    $img = json_decode($menuFive[0]['smeta']);
+                </php>
+            	<div class="col-md-8 col-sm-12 item-list">
+                	<div class="row">
+                        <div class=" col-sm-12 section-title inside-page">
+                            <h4>{$menuFive.0.post_title}</h4>
+                            <h2>{$menuFive.0.post_content}</h2>
+                        </div>
+                        <div class="col-md-6">
+                        <php>
+                            $menuSix=sp_sql_posts("cid:16;limit:8;");
+                        </php>
+                        <foreach name="menuSix" item="vo" key='k'>
+                            <if condition="$k lt 4">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>{$vo.post_title}</h4>
+                                </div>
+                                <div class="item-details row">
+                                    <div class="col-sm-9">
+                                        <p>{$vo.post_content}</p>
+                                    </div>
+                                </div>                                            
+                            </div>
+                            </if>
+                        </foreach>
+
+                        </div>
+                        <div class="col-md-6">
+                        <foreach name="menuSix" item="vo" key='k'>
+                            <if condition="$k gt 3">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>{$vo.post_title}</h4>
+                                </div>
+                                <div class="item-details row">
+                                    <div class="col-sm-9">
+                                        <p>{$vo.post_content}</p>
+                                    </div>
+                                </div>                                            
+                            </div>
+                            </if>
+                        </foreach>
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-sm-12 item-img">
+                	<div class="row">
+                    	<div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[0]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                        <div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[1]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Menu List Section -->
+    
+    <section id="menulist3" class="menulist"><!-- Section id-->
+        <php>
+            $menuSeven=sp_sql_posts("cid:17;");
+            $img = json_decode($menuSeven[0]['smeta']);
+        </php>
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-4 col-sm-12 item-img">
+                	<div class="row">
+                    	<div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[0]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                        <div class="col-md-12 col-sm-6 col-xs-6">
+                        	<img src="{$img->photo[1]->url}" class="img-responsive" alt="menu food" />
+                        </div>
+                    </div>
+                </div>
+            	<div class="col-md-8 col-sm-12 item-list">
+                	<div class="row">
+                        <div class=" col-sm-12 section-title inside-page">
+                            <h4>{$menuSeven.0.post_title}</h4>
+                            <h2>{$menuSeven.0.post_content}</h2>
+                        </div>
+                        <div class="col-md-6">
+                        <php>
+                            $menuSix=sp_sql_posts("cid:18;limit:8;");
+                        </php>
+                        <foreach name="menuSix" item="vo" key='k'>
+                            <if condition="$k lt 4">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>{$vo.post_title}</h4>
+                                </div>
+                                <div class="item-details row">
+                                    <div class="col-sm-9">
+                                        <p>{$vo.post_content}</p>
+                                    </div>
+                                </div>                                            
+                            </div>
+                            </if>
+                        </foreach>
+                            
+                        </div>
+                        <div class="col-md-6">
+                        <foreach name="menuSix" item="vo" key='k'>
+                            <if condition="$k gt 3">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>{$vo.post_title}</h4>
+                                </div>
+                                <div class="item-details row">
+                                    <div class="col-sm-9">
+                                        <p>{$vo.post_content}</p>
+                                    </div>
+                                </div>                                            
+                            </div>
+                            </if>
+                        </foreach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer Section -->
+    <tc_include file="Public:footer" />
+   
+    <tc_include file="Public:scripts" />  
+  </body>
+</html>
+
